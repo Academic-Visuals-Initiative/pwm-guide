@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Edit Template — AVI Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}</script>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .docs-section h3 { color: #0071F3; font-size: 1.8rem; }
+        .docs-section h4 { color: #0071F3; font-size: 1.3rem; margin-top: 24px; }
+        .preview-box { padding: 12px 16px; border: 1px solid var(--border); border-radius: 12px; margin: 12px 0; background: var(--bg); }
+        .hl-yellow { background: #ffff00; color: #000; padding: 0 2px; border-radius: 2px; }
+        .hl-blue { background: #cce5ff; color: #000; padding: 0 2px; border-radius: 2px; }
+    </style>
+</head>
+<body>
+    <nav class="docs-nav-sidebar">
+        <div class="logo-row">
+            <a href="../index.html" class="logo">AVI — Minimal Template Guide</a>
+            <button class="nav-icon-btn" data-toggle-theme aria-label="Toggle theme" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;display:flex;margin-left:auto;transition:color .2s;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </button>
+        </div>
+        <ul class="nav-links" id="section-nav">
+            <li><a href="getting-started.html">Structure</a></li>
+            <li><a href="must-read.html">Must Read</a></li>
+            <li><a href="how-to-edit.html" class="active">How to Edit Template</a></li>
+            <li><a href="adding-removing-sections.html">Removing Sections</a></li>
+            <li><a href="adding-sections.html">Adding Sections</a></li>
+            <li><a href="change-order.html">Change the Order of Sections</a></li>
+            <li><a href="text-formatting.html">Text Formatting</a></li>
+            <li><a href="images.html">Single Images</a></li>
+            <li><a href="galleries.html">Galleries</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="videos.html">Videos</a></li>
+            <li><a href="3d-model.html">3D Model</a></li>
+            <li><a href="maps-embeds.html">Maps &amp; Embeds</a></li>
+            <li><a href="buttons-text.html">Buttons &amp; Text</a></li>
+            <li><a href="groups.html">Groups</a></li>
+        </ul>
+        <div class="docs-sidebar-footer">
+            <span>&copy; 2026 Academic Visuals Initiative (AVI).</span>
+            <div class="docs-sidebar-links">
+                <a href="../index.html">GUIDE</a>
+                <a href="https://github.com/Academic-Visuals-Initiative">GitHub</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="docs-content">
+            <div class="docs-section active" id="sec1">
+
+<h2><span class="sec-num">02</span> How to Edit Your Website</h2>
+
+<h3>site.json — Master Controls</h3>
+<p>This is the boss file. It controls everything about your site.</p>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "name": "<span class="hl-blue">Coffee Bean</span>",              ← Your name (appears in browser tab)
+    "title": "<span class="hl-blue">Coffee Bean</span>",             ← Browser tab title (same as name usually)
+    "description": "<span class="hl-blue">PhD candidate...</span>",  ← Optional: shows in Google search results
+    "highlight_color": "#ffff00",       ← Color for ==highlighted text== (yellow by default)
+
+    "cv": {
+        "enabled": true,                ← true = show CV button, false = hide it
+        "path": "assets/cv.pdf",        ← Path to your CV file
+        "viewer": "pages/cv.html",      ← Don't change this
+        "mode": "view",                 ← "view" or "download"
+        "label": "View CV"              ← Text on the button
+    },
+
+    "header": {
+        "name": "<span class="hl-blue">Coffee Bean</span>",          ← Big text at top of page
+        "subtitle": "<span class="hl-blue">PhD Candidate</span>",    ← Small text below your name
+        "institution": "<span class="hl-blue">Caffeine Tech</span>", ← Third line (shown with •)
+        "image": "<span class="hl-blue">assets/images/hero/profile1x1.jpg</span>",  ← Profile photo path
+        "image_alt": "<span class="hl-blue">Coffee Bean</span>"      ← Alt text for photo
+    },
+
+    "sections": [
+        { "file": "data/about.json",        "id": "about",        "enabled": true },
+        { "file": "data/publications.json", "id": "publications", "enabled": true },
+        { "file": "data/research.json",     "id": "research",     "enabled": true },
+        { "file": "data/education.json",    "id": "education",    "enabled": true },
+        { "file": "data/contact.json",      "id": "contact",      "enabled": true }
+    ]
+}</code></pre>
+
+<h4>What you can do in site.json:</h4>
+<div class="blog-table"><table><thead><tr><th>If you want to...</th><th>Do this...</th></tr></thead><tbody>
+<tr><td><strong>Change your name/title</strong></td><td>Edit <code>name</code> and <code>header.name</code></td></tr>
+<tr><td><strong>Change your profile photo</strong></td><td>Edit <code>header.image</code> path</td></tr>
+<tr><td><strong>Hide the CV button</strong></td><td>Change <code>cv.enabled</code> to <code>false</code></td></tr>
+<tr><td><strong>Reorder sections</strong></td><td>Move the <code>{ }</code> blocks up/down in <code>sections[]</code></td></tr>
+<tr><td><strong>Remove a section</strong></td><td>Delete its <code>{ }</code> block OR set <code>"enabled": false</code></td></tr>
+<tr><td><strong>Add a new section</strong></td><td>Add a new <code>{ "file": "data/yourfile.json", "id": "yourid", "enabled": true }</code></td></tr>
+<tr><td><strong>Remove header text</strong></td><td>Set to <code>""</code> (empty quotes)</td></tr>
+<tr><td><strong>Remove profile photo</strong></td><td>Delete <code>"image"</code> line or set to <code>""</code></td></tr>
+</tbody></table></div>
+
+<h3>about.json — About Me Section</h3>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "type": "about",              ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "id": "about",                ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "data": {
+        "label": "<span class="hl-blue">ABOUT ME</span>",      ← Section title (shown at top)
+        "paragraphs": [           ← Your bio text
+            "<span class="hl-blue">First paragraph here... **bold text** works!</span>",
+            "<span class="hl-blue">Second paragraph here...</span>"
+        ],
+        "buttons": [              ← Optional: links below your bio
+            {
+                "label": "<span class="hl-blue">View My Lab</span>",      ← Button text
+                "url": "<span class="hl-blue">https://example.com</span>", ← Button link
+                "style": "<span class="hl-blue">primary</span>",           ← "primary" (black) or "outline" (border)
+                "align": "<span class="hl-blue">center</span>"             ← "left", "center", "right"
+            }
+        ]
+    }
+}</code></pre>
+
+<h4>What you can do:</h4>
+<div class="blog-table"><table><thead><tr><th>Action</th><th>How</th></tr></thead><tbody>
+<tr><td><strong>Write your bio</strong></td><td>Edit text inside <code>paragraphs[]</code></td></tr>
+<tr><td><strong>Add a paragraph</strong></td><td>Add a new <code>"text here"</code> line inside the <code>[ ]</code></td></tr>
+<tr><td><strong>Remove a paragraph</strong></td><td>Delete its <code>"text here"</code> line</td></tr>
+<tr><td><strong>Add a button</strong></td><td>Copy the <code>{ }</code> block inside <code>buttons[]</code>, edit label + url</td></tr>
+<tr><td><strong>Remove a button</strong></td><td>Delete its <code>{ }</code> block</td></tr>
+<tr><td><strong>Remove all buttons</strong></td><td>Delete the whole <code>"buttons": [ ... ]</code> line</td></tr>
+<tr><td><strong>Remove all paragraphs</strong></td><td>Delete <code>"paragraphs": [ ... ]</code> line (section shows label only)</td></tr>
+</tbody></table></div>
+
+<h3>publications.json — Your Papers List</h3>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "type": "publications",       ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "id": "publications",         ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "data": {
+        "label": "<span class="hl-blue">PUBLICATIONS</span>",  ← Section title
+        "numbered": <span class="hl-blue">false</span>,        ← true = show 1. 2. 3. before each paper
+        "papers": [
+            {
+                "title": "<span class="hl-blue">Paper Title Here</span>",           ← Paper name (required)
+                "authors": "<span class="hl-blue">Author, A., Author, B.</span>",   ← Author list (optional)
+                "url": "<span class="hl-blue">https://doi.org/...</span>",          ← Link to paper (optional)
+                "meta": "<span class="hl-blue">Journal Name, 2024</span>",          ← Journal/year in italics (optional)
+                "text": "<span class="hl-blue">Brief abstract or note...</span>",   ← Extra text (optional)
+                "image": "<span class="hl-blue">path/to/image.jpg</span>"           ← Thumbnail image (optional)
+            }
+        ]
+    }
+}</code></pre>
+
+<h4>What you can do:</h4>
+<div class="blog-table"><table><thead><tr><th>Action</th><th>How</th></tr></thead><tbody>
+<tr><td><strong>Add a paper</strong></td><td>Copy a full <code>{ }</code> block and paste it inside <code>papers: [ ]</code>, edit the details</td></tr>
+<tr><td><strong>Remove a paper</strong></td><td>Delete its <code>{ }</code> block (including the <code>{ }</code> and everything inside)</td></tr>
+<tr><td><strong>Edit a paper</strong></td><td>Change the text inside <code>""</code> quotes</td></tr>
+<tr><td><strong>Make numbered list</strong></td><td>Change <code>"numbered": false</code> to <code>"numbered": true</code></td></tr>
+<tr><td><strong>Remove all papers</strong></td><td>Delete <code>"papers": [ ... ]</code> line</td></tr>
+</tbody></table></div>
+
+<h3>research.json — Research Interests</h3>
+<p><strong>You have 3 ways to write this section. Pick ONE:</strong></p>
+
+<h4>Option A — Paragraphs (freeform text)</h4>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "type": "research",              ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "id": "research",                ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "data": {
+        "label": "RESEARCH",
+        "paragraphs": [
+            "<span class="hl-blue">I study **coffee brewing** and extraction kinetics.</span>",
+            "<span class="hl-blue">My lab focuses on ==flavor chemistry== and rheology.</span>"
+        ]
+    }
+}</code></pre>
+
+<h4>Option B — Texts (simple lines)</h4>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "type": "research",              ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "id": "research",                ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "data": {
+        "label": "RESEARCH",
+        "texts": [
+            "<span class="hl-blue">**Primary:** Coffee Brewing, Extraction Kinetics</span>",
+            "<span class="hl-blue">**Secondary:** Chocolate Rheology, Pour-Over Dynamics</span>"
+        ]
+    }
+}</code></pre>
+
+<h4>Option C — Items (key-value list)</h4>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "type": "research",              ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "id": "research",                ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "data": {
+        "label": "RESEARCH",
+        "items": [
+            { "label": "<span class="hl-blue">Primary</span>", "value": "<span class="hl-blue">Coffee Brewing, Extraction Kinetics</span>" },
+            { "label": "<span class="hl-blue">Secondary</span>", "value": "<span class="hl-blue">Chocolate Rheology</span>" }
+        ]
+    }
+}</code></pre>
+
+<h4>What you can do:</h4>
+<div class="blog-table"><table><thead><tr><th>Action</th><th>How</th></tr></thead><tbody>
+<tr><td><strong>Switch style</strong></td><td>Delete the old field, add the new one (use only 1 at a time)</td></tr>
+<tr><td><strong>Add a line</strong></td><td>Add a new <code>"text..."</code> or <code>{ }</code> inside the array</td></tr>
+<tr><td><strong>Remove a line</strong></td><td>Delete its line from the array</td></tr>
+<tr><td><strong>Remove all content</strong></td><td>Delete the <code>"paragraphs"</code>/<code>"texts"</code>/<code>"items"</code> line</td></tr>
+</tbody></table></div>
+
+<h3>education.json — Your Degrees</h3>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "type": "education",             ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "id": "education",               ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "data": {
+        "label": "EDUCATION",
+        "items": [
+            {
+                "degree": "<span class="hl-blue">PhD Candidate in Coffee Science</span>",   ← Degree name (required)
+                "institution": "<span class="hl-blue">Caffeine Tech</span>",                ← University (optional)
+                "year": "<span class="hl-blue">2022 — Present</span>",                      ← Date (optional)
+                "description": "<span class="hl-blue">Dissertation on...</span>"            ← Extra text (optional)
+            }
+        ]
+    }
+}</code></pre>
+
+<h4>What you can do:</h4>
+<div class="blog-table"><table><thead><tr><th>Action</th><th>How</th></tr></thead><tbody>
+<tr><td><strong>Add an entry</strong></td><td>Copy a <code>{ }</code> block, paste inside <code>items: [ ]</code>, edit text</td></tr>
+<tr><td><strong>Remove an entry</strong></td><td>Delete its <code>{ }</code> block</td></tr>
+<tr><td><strong>Reorder</strong></td><td>Move blocks up/down inside the <code>[ ]</code></td></tr>
+<tr><td><strong>Remove all entries</strong></td><td>Delete <code>"items": [ ... ]</code> line</td></tr>
+</tbody></table></div>
+
+<h3>contact.json — Social Links &amp; Contact Info</h3>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "type": "contact",              ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "id": "contact",                 ← <span style="color:#d32f2f;font-weight:600;">DON'T CHANGE</span>
+    "data": {
+        "label": "<span class="hl-blue">CONNECT</span>",                              ← Section title
+        "text": "<span class="hl-blue">Let's connect!</span>",                        ← Optional intro text
+        "address": "<span class="hl-blue">Building 42, University Campus</span>",     ← Optional address
+        "extra_line": "<span class="hl-blue">Office hours: Mon-Wed 10-4</span>",      ← Optional extra info
+        "icons": [
+            {
+                "name": "<span class="hl-blue">googlescholar-old</span>",    ← Icon name (from 45 available)
+                "url": "<span class="hl-blue">https://scholar.google.com/</span>",  ← Full link
+                "label": "<span class="hl-blue">Google Scholar</span>"       ← Tooltip text
+            },
+            {
+                "name": "<span class="hl-blue">github</span>",
+                "url": "<span class="hl-blue">https://github.com/</span>",
+                "label": "<span class="hl-blue">GitHub</span>"
+            },
+            {
+                "name": "<span class="hl-blue">mail</span>",
+                "url": "<span class="hl-blue">mailto:hello@example.com</span>",
+                "label": "<span class="hl-blue">Email</span>"
+            }
+        ]
+    }
+}</code></pre>
+
+<h4>Available icon names (45 total):</h4>
+<p><strong>Academic:</strong> <code>googlescholar-old</code>, <code>googlescholar-new</code>, <code>orcid</code>, <code>researchgate</code>, <code>pubmed</code>, <code>scopus</code>, <code>publons</code>, <code>web-of-science</code>, <code>semanticscholar</code>, <code>hal</code>, <code>zenodo</code>, <code>osf</code>, <code>figshare</code>, <code>ieee</code>, <code>acm</code>, <code>arxiv</code>, <code>internetarchive</code></p>
+<p><strong>Social:</strong> <code>github</code>, <code>gitlab</code>, <code>githubpages</code>, <code>linkedin</code>, <code>x</code>, <code>bluesky</code>, <code>mastodon</code>, <code>youtube</code>, <code>instagram</code>, <code>facebook</code>, <code>medium</code>, <code>substack</code>, <code>reddit</code>, <code>pinterest</code>, <code>whatsapp</code>, <code>dribbble</code>, <code>behance</code>, <code>artstation</code></p>
+<p><strong>General:</strong> <code>mail</code>, <code>globe</code>, <code>university</code>, <code>graduation-cap</code>, <code>refinedgithub</code></p>
+
+<h4>What you can do:</h4>
+<div class="blog-table"><table><thead><tr><th>Action</th><th>How</th></tr></thead><tbody>
+<tr><td><strong>Add an icon</strong></td><td>Copy a <code>{ }</code> block, paste inside <code>icons: [ ]</code>, set <code>name</code>, <code>url</code>, <code>label</code></td></tr>
+<tr><td><strong>Remove an icon</strong></td><td>Delete its <code>{ }</code> block</td></tr>
+<tr><td><strong>Edit icon URL</strong></td><td>Change the <code>url</code> value</td></tr>
+<tr><td><strong>Change icon</strong></td><td>Change the <code>name</code> value (see list above)</td></tr>
+<tr><td><strong>Remove all icons</strong></td><td>Delete <code>"icons": [ ... ]</code> line</td></tr>
+</tbody></table></div>
+
+
+<h3>Step-by-Step Guides</h3>
+
+<h4>How to edit any text</h4>
+<p><strong>Step 1:</strong> Open the JSON file for the section you want to edit (e.g. <code>data/about.json</code> for bio, <code>data/education.json</code> for degrees).</p>
+<p><strong>Step 2:</strong> Find the text you want to change inside <code>""</code> quotes.</p>
+<p><strong>Step 3:</strong> Type your new text between the quotes.</p>
+<p><strong>Step 4:</strong> Save the file and refresh your browser.</p>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "data": {
+        "paragraphs": [
+            <span class="hl-yellow">"Old text"</span>  →  <span class="hl-yellow">"New text here"</span>
+        ]
+    }
+}</code></pre>
+<p>This works for <strong>any</strong> text field — name, bio, paper titles, degree names, button labels, etc.</p>
+
+<h4>How to add an item</h4>
+<p><strong>Step 1:</strong> Open the JSON file (e.g. <code>data/publications.json</code> to add a paper, <code>data/education.json</code> to add a degree).</p>
+<p><strong>Step 2:</strong> Find the array <code>[ ]</code> that contains the items.</p>
+<p><strong>Step 3:</strong> Copy an existing <code>{ }</code> block, paste it after the last item, and add a comma after the previous item.</p>
+<p><strong>Step 4:</strong> Edit the values inside the new <code>{ }</code> block.</p>
+<p><strong>Step 5:</strong> Save and refresh.</p>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "items": [
+        { "degree": "Existing Degree", "institution": "Univ", "year": "2024" },
+        <span class="hl-yellow">{ "degree": "New Degree", "institution": "Univ", "year": "2025" }</span>
+    ]
+}</code></pre>
+<p>Use this pattern to add papers, degrees, icons, buttons, or any list item.</p>
+
+<h4>How to remove an item</h4>
+<p><strong>Step 1:</strong> Open the JSON file.</p>
+<p><strong>Step 2:</strong> Find the item you want to remove inside the array <code>[ ]</code>.</p>
+<p><strong>Step 3:</strong> Delete the entire <code>{ }</code> block for that item, including the comma before or after it.</p>
+<p><strong>Step 4:</strong> Save and refresh.</p>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "papers": [
+        { "title": "Paper I want to keep", "authors": "Author", "url": "#", "meta": "Journal" },
+        <span class="hl-yellow">{ "title": "Paper to remove", "authors": "Author", "url": "#", "meta": "Journal" }</span>  ← Delete this block
+    ]
+}</code></pre>
+<p>Use this pattern to remove papers, degrees, icons, paragraphs, or any list item.</p>
+
+<h4>How to reorder items</h4>
+<p><strong>Step 1:</strong> Open the JSON file.</p>
+<p><strong>Step 2:</strong> Find the array <code>[ ]</code> with the items.</p>
+<p><strong>Step 3:</strong> Cut an entire <code>{ }</code> block and paste it higher or lower in the array.</p>
+<p><strong>Step 4:</strong> Save and refresh. Items will appear in the new order.</p>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "items": [
+        { "degree": "Second item", ... },  ← Cut and move this up
+        { "degree": "First item", ... }    ← Paste here
+    ]
+}</code></pre>
+
+<h4>How to add media (image, video, model)</h4>
+<p><strong>Step 1:</strong> Open the JSON file for any section (<code>about.json</code>, <code>education.json</code>, etc.).</p>
+<p><strong>Step 2:</strong> Add the media field inside <code>"data": { }</code>.</p>
+<p><strong>Step 3:</strong> Set the path or URL.</p>
+<p><strong>Step 4:</strong> Save and refresh.</p>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "data": {
+        "label": "ABOUT ME",
+        "paragraphs": [...],
+        <span class="hl-yellow">"image": "path/to/photo.jpg"</span>        ← Add this for a photo
+        <span class="hl-yellow">"video": { "src": "https://youtu.be/...", "ratio": "16/9" }</span>  ← Add this for a video
+    }
+}</code></pre>
+
+<h4>How to enable/disable a section</h4>
+<p><strong>Step 1:</strong> Open <code>data/site.json</code>.</p>
+<p><strong>Step 2:</strong> Find the section in the <code>sections</code> array.</p>
+<p><strong>Step 3:</strong> Change <code>"enabled": true</code> to <code>"enabled": false</code> to hide it, or <code>false</code> to <code>true</code> to show it again.</p>
+<p><strong>Step 4:</strong> Save and refresh.</p>
+<pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "sections": [
+        { "file": "data/about.json", "id": "about", <span class="hl-yellow">"enabled": false</span> }  ← Section hidden
+    ]
+}</code></pre>
+<p>The JSON file is kept — only the rendering is skipped.</p>
+
+<h3>Quick Cheat Sheet</h3>
+<div class="blog-table"><table><thead><tr><th>I want to...</th><th>I edit...</th></tr></thead><tbody>
+<tr><td>Change my name</td><td><code>site.json</code> → <code>name</code> + <code>header.name</code></td></tr>
+<tr><td>Change profile photo</td><td><code>site.json</code> → <code>header.image</code></td></tr>
+<tr><td>Change my bio</td><td><code>about.json</code> → <code>paragraphs[]</code></td></tr>
+<tr><td>Add a paper</td><td><code>publications.json</code> → <code>papers[]</code></td></tr>
+<tr><td>Change research interests</td><td><code>research.json</code> → <code>texts[]</code> or <code>paragraphs[]</code> or <code>items[]</code></td></tr>
+<tr><td>Add education entry</td><td><code>education.json</code> → <code>items[]</code></td></tr>
+<tr><td>Add social icon</td><td><code>contact.json</code> → <code>icons[]</code></td></tr>
+<tr><td>Add a photo</td><td>Any section → <code>"image": "path/photo.jpg"</code></td></tr>
+<tr><td>Add a video</td><td>Any section → <code>"video": { "src": "..." }</code></td></tr>
+<tr><td>Add a 3D model</td><td>Any section → <code>"model": { "src": "..." }</code></td></tr>
+<tr><td>Hide a section</td><td><code>site.json</code> → set <code>"enabled": false</code></td></tr>
+<tr><td>Remove a section</td><td>Delete its <code>{ }</code> from <code>sections[]</code> in <code>site.json</code></td></tr>
+<tr><td>Remove CV button</td><td><code>site.json</code> → <code>"cv": { "enabled": false }</code></td></tr>
+<tr><td>Add a button</td><td>Any section → <code>"buttons": [ { "label": "...", "url": "..." } ]</code></td></tr>
+</tbody></table></div>
+
+                <div class="sec-nav"><a href="must-read.html">← Back</a><a href="adding-removing-sections.html">Next →</a></div>
+            </div>
+        </div>
+        <footer class="docs-page-footer">
+            <span>&copy; 2026 Academic Visuals Initiative (AVI).</span>
+            <div class="footer-links">
+                <a href="../index.html">Guide</a>
+                <a href="https://github.com/Academic-Visuals-Initiative">GitHub</a>
+            </div>
+        </footer>
+    </div>
+    <script>function copyCode(btn){var code=btn.nextElementSibling;if(!code)return;navigator.clipboard.writeText(code.textContent).then(function(){var t=btn.textContent;btn.textContent='Copied!';setTimeout(function(){btn.textContent=t},1500)})}
+    (function(){var t=localStorage.getItem('theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');document.addEventListener('click',function(e){var b=e.target.closest('[data-toggle-theme]');if(b){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}}})})();</script>
+</body>
+</html>

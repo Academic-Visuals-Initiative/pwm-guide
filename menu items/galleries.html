@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleries — AVI Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}</script>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .docs-section h3 { color: #0071F3; font-size: 1.8rem; }
+        .hl-blue { background: #cce5ff; color: #000; padding: 0 2px; border-radius: 2px; }
+        .preview-box { padding: 12px 16px; border: 1px solid var(--border); border-radius: 12px; margin: 12px 0; background: var(--bg); }
+    </style>
+</head>
+<body>
+    <nav class="docs-nav-sidebar">
+        <div class="logo-row">
+            <a href="../index.html" class="logo">AVI — Minimal Template Guide</a>
+            <button class="nav-icon-btn" data-toggle-theme aria-label="Toggle theme" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;display:flex;margin-left:auto;transition:color .2s;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </button>
+        </div>
+        <ul class="nav-links" id="section-nav">
+            <li><a href="getting-started.html">Structure</a></li>
+            <li><a href="must-read.html">Must Read</a></li>
+            <li><a href="how-to-edit.html">How to Edit Template</a></li>
+            <li><a href="adding-removing-sections.html">Removing Sections</a></li>
+            <li><a href="adding-sections.html">Adding Sections</a></li>
+            <li><a href="change-order.html">Change the Order of Sections</a></li>
+            <li><a href="text-formatting.html">Text Formatting</a></li>
+            <li><a href="images.html">Single Images</a></li>
+            <li><a href="galleries.html" class="active">Galleries</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="videos.html">Videos</a></li>
+            <li><a href="3d-model.html">3D Model</a></li>
+            <li><a href="maps-embeds.html">Maps &amp; Embeds</a></li>
+            <li><a href="buttons-text.html">Buttons &amp; Text</a></li>
+            <li><a href="groups.html">Groups</a></li>
+        </ul>
+        <div class="docs-sidebar-footer">
+            <span>&copy; 2026 Academic Visuals Initiative (AVI).</span>
+            <div class="docs-sidebar-links">
+                <a href="../index.html">GUIDE</a>
+                <a href="https://github.com/Academic-Visuals-Initiative">GitHub</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="docs-content">
+            <div class="docs-section active" id="sec6">
+                <h2><span class="sec-num">08</span> Galleries</h2>
+
+                <p>Add multiple images in one section using a gallery. The <code>gallery</code> object sets the layout, and <code>images[]</code> contains the image list.</p>
+                <p>Galleries can be used in <strong>any</strong> section type (<code>about</code>, <code>publications</code>, <code>research</code>, <code>education</code>, <code>contact</code>). You can only use <strong>one</strong> gallery per section. To add multiple galleries or mix galleries with other media, use <a href="#" style="color:#0071F3;font-weight:600;">Groups</a>.</p>
+
+                <p style="color:#d32f2f;font-weight:600;">You can't add images directly without the gallery wrapper.</p>
+
+                <p style="font-weight:600;">Wrong — images outside gallery:</p>
+                <pre style="border:2px solid #d32f2f;"><code>{
+    "image": "img1.jpg",
+    "images": [
+        { "src": "img2.jpg" },
+        { "src": "img3.jpg" }
+    ]
+}</code></pre>
+
+                <p style="font-weight:600;">Right — proper gallery structure:</p>
+                <pre><code>{
+    "gallery": {
+        "layout": "grid",
+        "ratio": "3x2",
+        "cols": 3
+    },
+    "images": [
+        { "src": "img1.jpg", "alt": "1" },
+        { "src": "img2.jpg", "alt": "2" },
+        { "src": "img3.jpg", "alt": "3" }
+    ]
+}</code></pre>
+
+                <h3>Grid Gallery</h3>
+                <p>These are the available options for galleries:</p>
+                <div class="blog-table"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+                <tr><td><code>layout</code></td><td><code>"grid"</code> for uniform tiles, <code>"masonry"</code> for column flow</td></tr>
+                <tr><td><code>ratio</code></td><td>Aspect ratio like <code>"3x2"</code>, <code>"1x1"</code>, <code>"16x9"</code></td></tr>
+                <tr><td>available ratios</td><td><code>"1x1"</code>, <code>"3x2"</code>, <code>"2x3"</code>, <code>"4x3"</code>, <code>"3x4"</code>, <code>"16x9"</code>, <code>"9x16"</code>, <code>"21x9"</code>, or any <code>"WxH"</code></td></tr>
+                <tr><td><code>cols</code></td><td>Number of columns (max 3)</td></tr>
+                <tr><td><code>src</code></td><td>Image path (inside <code>images[]</code>)</td></tr>
+                <tr><td><code>alt</code></td><td>Alt text (inside <code>images[]</code>)</td></tr>
+                <tr><td><code>caption</code></td><td>Text below image (inside <code>images[]</code>)</td></tr>
+                <tr><td><code>credit</code></td><td>Top-right overlay label (inside <code>images[]</code>)</td></tr>
+                </tbody></table></div>
+
+                <h3>Grid Gallery Use Cases</h3>
+
+                <h4>2 column grid</h4>
+                <p>If no ratio is specified, the default is 16x9.</p>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "cols": 2 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1" },
+        { "src": "img2.jpg", "alt": "2" }
+    ]
+}</code></pre>
+
+                <h4>3 column grid</h4>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1" },
+        { "src": "img2.jpg", "alt": "2" },
+        { "src": "img3.jpg", "alt": "3" }
+    ]
+}</code></pre>
+
+                <h4>3 column grid with credits</h4>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="position:relative;"><span class="demo-label">Photo A</span><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+                        <div style="position:relative;"><span class="demo-label">Photo B</span><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+                        <div style="position:relative;"><span class="demo-label">Photo C</span><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1", "credit": "Photo A" },
+        { "src": "img2.jpg", "alt": "2", "credit": "Photo B" },
+        { "src": "img3.jpg", "alt": "3", "credit": "Photo C" }
+    ]
+}</code></pre>
+
+                <h4>3 column grid with captions</h4>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 1</p></div>
+                        <div><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 2</p></div>
+                        <div><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;height:100%;object-fit:cover;display:block;"></div><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 3</p></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1", "caption": "Caption 1" },
+        { "src": "img2.jpg", "alt": "2", "caption": "Caption 2" },
+        { "src": "img3.jpg", "alt": "3", "caption": "Caption 3" }
+    ]
+}</code></pre>
+
+                <h4>3 column grid with captions and credits</h4>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="position:relative;"><span class="demo-label">Credit 1</span><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 1</p></div>
+                        <div style="position:relative;"><span class="demo-label">Credit 2</span><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 2</p></div>
+                        <div style="position:relative;"><span class="demo-label">Credit 3</span><div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;height:100%;object-fit:cover;display:block;"></div><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 3</p></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1", "caption": "Caption 1", "credit": "Credit 1" },
+        { "src": "img2.jpg", "alt": "2", "caption": "Caption 2", "credit": "Credit 2" },
+        { "src": "img3.jpg", "alt": "3", "caption": "Caption 3", "credit": "Credit 3" }
+    ]
+}</code></pre>
+
+                <h4>3 column 1x1 aspect ratio grid</h4>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="aspect-ratio:1/1;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:1/1;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:1/1;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "ratio": "1x1", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1" },
+        { "src": "img2.jpg", "alt": "2" },
+        { "src": "img3.jpg", "alt": "3" }
+    ]
+}</code></pre>
+
+                <h4>3 column 16x9 aspect ratio grid</h4>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:16/9;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "ratio": "16x9", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1" },
+        { "src": "img2.jpg", "alt": "2" },
+        { "src": "img3.jpg", "alt": "3" }
+    ]
+}</code></pre>
+
+                <h4>3 column 9x16 aspect ratio grid</h4>
+                <div class="preview-box">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="aspect-ratio:9/16;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:9/16;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div style="aspect-ratio:9/16;overflow:hidden;border-radius:6px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "grid", "ratio": "9x16", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1" },
+        { "src": "img2.jpg", "alt": "2" },
+        { "src": "img3.jpg", "alt": "3" }
+    ]
+}</code></pre>
+
+                <h3>Masonry Gallery Use Cases</h3>
+
+                <h4>3 column masonry grid</h4>
+                <div class="preview-box">
+                    <div style="column-count:3;column-gap:8px;">
+                        <img src="../assets/images/other/1.webp" alt="1" style="width:100%;border-radius:6px;margin-bottom:8px;break-inside:avoid;display:block;">
+                        <img src="../assets/images/other/2.webp" alt="2" style="width:100%;border-radius:6px;margin-bottom:8px;break-inside:avoid;display:block;">
+                        <img src="../assets/images/other/3.webp" alt="3" style="width:100%;border-radius:6px;margin-bottom:8px;break-inside:avoid;display:block;">
+                        <img src="../assets/images/other/4.webp" alt="4" style="width:100%;border-radius:6px;margin-bottom:8px;break-inside:avoid;display:block;">
+                        <img src="../assets/images/other/5.webp" alt="5" style="width:100%;border-radius:6px;margin-bottom:8px;break-inside:avoid;display:block;">
+                        <img src="../assets/images/other/6.webp" alt="6" style="width:100%;border-radius:6px;margin-bottom:8px;break-inside:avoid;display:block;">
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "masonry", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1" },
+        { "src": "img2.jpg", "alt": "2" },
+        { "src": "img3.jpg", "alt": "3" },
+        { "src": "img4.jpg", "alt": "4" },
+        { "src": "img5.jpg", "alt": "5" },
+        { "src": "img6.jpg", "alt": "6" }
+    ]
+}</code></pre>
+
+                <h4>3 column masonry grid with captions</h4>
+                <div class="preview-box">
+                    <div style="column-count:3;column-gap:8px;">
+                        <div style="break-inside:avoid;margin-bottom:8px;"><img src="../assets/images/other/1.webp" alt="1" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 1</p></div>
+                        <div style="break-inside:avoid;margin-bottom:8px;"><img src="../assets/images/other/2.webp" alt="2" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 2</p></div>
+                        <div style="break-inside:avoid;margin-bottom:8px;"><img src="../assets/images/other/3.webp" alt="3" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 3</p></div>
+                        <div style="break-inside:avoid;margin-bottom:8px;"><img src="../assets/images/other/4.webp" alt="4" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 4</p></div>
+                        <div style="break-inside:avoid;margin-bottom:8px;"><img src="../assets/images/other/5.webp" alt="5" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 5</p></div>
+                        <div style="break-inside:avoid;margin-bottom:8px;"><img src="../assets/images/other/6.webp" alt="6" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 6</p></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "masonry", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1", "caption": "Caption 1" },
+        { "src": "img2.jpg", "alt": "2", "caption": "Caption 2" },
+        { "src": "img3.jpg", "alt": "3", "caption": "Caption 3" },
+        { "src": "img4.jpg", "alt": "4", "caption": "Caption 4" },
+        { "src": "img5.jpg", "alt": "5", "caption": "Caption 5" },
+        { "src": "img6.jpg", "alt": "6", "caption": "Caption 6" }
+    ]
+}</code></pre>
+
+                <h4>3 column masonry grid with credits</h4>
+                <div class="preview-box">
+                    <div style="column-count:3;column-gap:8px;">
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 1</span><img src="../assets/images/other/1.webp" alt="1" style="width:100%;border-radius:6px;display:block;"></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 2</span><img src="../assets/images/other/2.webp" alt="2" style="width:100%;border-radius:6px;display:block;"></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 3</span><img src="../assets/images/other/3.webp" alt="3" style="width:100%;border-radius:6px;display:block;"></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 4</span><img src="../assets/images/other/4.webp" alt="4" style="width:100%;border-radius:6px;display:block;"></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 5</span><img src="../assets/images/other/5.webp" alt="5" style="width:100%;border-radius:6px;display:block;"></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 6</span><img src="../assets/images/other/6.webp" alt="6" style="width:100%;border-radius:6px;display:block;"></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "masonry", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1", "credit": "Credit 1" },
+        { "src": "img2.jpg", "alt": "2", "credit": "Credit 2" },
+        { "src": "img3.jpg", "alt": "3", "credit": "Credit 3" },
+        { "src": "img4.jpg", "alt": "4", "credit": "Credit 4" },
+        { "src": "img5.jpg", "alt": "5", "credit": "Credit 5" },
+        { "src": "img6.jpg", "alt": "6", "credit": "Credit 6" }
+    ]
+}</code></pre>
+
+                <h4>3 column masonry grid with captions and credits</h4>
+                <div class="preview-box">
+                    <div style="column-count:3;column-gap:8px;">
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 1</span><img src="../assets/images/other/1.webp" alt="1" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 1</p></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 2</span><img src="../assets/images/other/2.webp" alt="2" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 2</p></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 3</span><img src="../assets/images/other/3.webp" alt="3" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 3</p></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 4</span><img src="../assets/images/other/4.webp" alt="4" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 4</p></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 5</span><img src="../assets/images/other/5.webp" alt="5" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 5</p></div>
+                        <div style="position:relative;break-inside:avoid;margin-bottom:8px;"><span class="demo-label">Credit 6</span><img src="../assets/images/other/6.webp" alt="6" style="width:100%;border-radius:6px;display:block;"><p style="font-size:.65rem;color:var(--muted);margin-top:2px;">Caption 6</p></div>
+                    </div>
+                </div>
+                <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
+    "gallery": { "layout": "masonry", "cols": 3 },
+    "images": [
+        { "src": "img1.jpg", "alt": "1", "caption": "Caption 1", "credit": "Credit 1" },
+        { "src": "img2.jpg", "alt": "2", "caption": "Caption 2", "credit": "Credit 2" },
+        { "src": "img3.jpg", "alt": "3", "caption": "Caption 3", "credit": "Credit 3" },
+        { "src": "img4.jpg", "alt": "4", "caption": "Caption 4", "credit": "Credit 4" },
+        { "src": "img5.jpg", "alt": "5", "caption": "Caption 5", "credit": "Credit 5" },
+        { "src": "img6.jpg", "alt": "6", "caption": "Caption 6", "credit": "Credit 6" }
+    ]
+}</code></pre>
+
+                <div class="sec-nav"><a href="images.html">← Back</a><a href="publications.html">Next →</a></div>
+            </div>
+        </div>
+        <footer class="docs-page-footer">
+            <span>&copy; 2026 Academic Visuals Initiative (AVI).</span>
+            <div class="footer-links">
+                <a href="../index.html">Guide</a>
+                <a href="https://github.com/Academic-Visuals-Initiative">GitHub</a>
+            </div>
+        </footer>
+    </div>
+    <script>function copyCode(btn){var code=btn.nextElementSibling;if(!code)return;navigator.clipboard.writeText(code.textContent).then(function(){var t=btn.textContent;btn.textContent='Copied!';setTimeout(function(){btn.textContent=t},1500)})}
+    (function(){var t=localStorage.getItem('theme')||'light';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');document.addEventListener('click',function(e){var b=e.target.closest('[data-toggle-theme]');if(b){var h=document.documentElement;var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}}})})();</script>
+</body>
+</html>

@@ -62,6 +62,7 @@
 <pre><button class="blog-copy-btn" onclick="copyCode(this)">Copy</button><code>{
     "name": "<span class="hl-blue">Coffee Bean</span>",              ← Your name (appears in browser tab)
     "title": "<span class="hl-blue">Coffee Bean</span>",             ← Browser tab title (same as name usually)
+    "favicon": "<span class="hl-blue">assets/images/your-icon.png</span>",  ← Optional: custom browser tab icon
     "description": "<span class="hl-blue">PhD candidate...</span>",  ← Optional: shows in Google search results
     "highlight_color": "#ffff00",       ← Color for ==highlighted text== (yellow by default)
 
@@ -94,6 +95,7 @@
 <div class="blog-table"><table><thead><tr><th>If you want to...</th><th>Do this...</th></tr></thead><tbody>
 <tr><td><strong>Change your name/title</strong></td><td>Edit <code>name</code> and <code>header.name</code></td></tr>
 <tr><td><strong>Change your profile photo</strong></td><td>Edit <code>header.image</code> path</td></tr>
+<tr><td><strong>Change favicon</strong></td><td>Edit <code>favicon</code> path in <code>site.json</code></td></tr>
 <tr><td><strong>Hide the CV button</strong></td><td>Change <code>cv.enabled</code> to <code>false</code></td></tr>
 <tr><td><strong>Reorder sections</strong></td><td>Move the <code>{ }</code> blocks up/down in <code>sections[]</code></td></tr>
 <tr><td><strong>Remove a section</strong></td><td>Delete its <code>{ }</code> block OR set <code>"enabled": false</code></td></tr>
